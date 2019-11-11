@@ -26,7 +26,67 @@ function main() {
 }
 // console.log(main());
 
+
 //2. WhatDoesThisDo
 // In both hash maps, the keys are the same, so whatever value is placed second, it overrides the value of the first .set, again since the keys are identical.
 
 //3. Demonstrate understanding of hash maps
+//https://sketch.io/render/sk-fc0daadd942d0db628e45b74f2265020.jpeg
+
+function deleteDup(string) { //google
+  let result = ''
+  let hashMap = new HashMap() 
+  for(let i = 0; i < string.length; i++) {
+
+    if(!hashMap.get(string[i].toLowerCase())) {
+      hashMap.set(string[i], string[i])
+      result += string[i]
+    }
+  }
+  return result
+}
+
+// console.log(deleteDup('google'))
+
+function palindrome(string){// input: acecarr, output: true;
+  if(string.length % 2 === 1) {
+     midpoint = string[Math.floor((string.length - 1) /2)]
+  }
+  let dupeCount = 0
+  let hashMap = new HashMap()
+  for(let i = 0; i < string.length; i++) { 
+    if(!hashMap.get(string[i].toLowerCase())) {
+      hashMap.set(string[i], string[i])
+    }
+    else dupeCount++
+  }
+
+  if(string.length % 2 === 1 && dupeCount % 2 === 1) {
+    return true;
+  }
+  if(string.length % 2 === 0 && dupeCount % 2 === 0) {
+    return true;
+  }
+  return false
+
+} 
+// console.log(palindrome('bavxsab'))
+
+// input:['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'], 
+// the output should be: [['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']].
+function anagram(arr) {
+  let result = []
+  
+  // for(let i = 0; i < arr.length; i++) {
+  //   let word = arr[i] 
+  //   let nextWord = arr[i++]
+  //   console.log(word, nextWord)
+  //   for(let j = 0; j < word.length; j++) { //east
+  //     if(nextWord.includes(word[j])) {
+  //       result.push(word)
+  //     }
+  //   }
+  // }
+  return result
+}
+console.log(anagram(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']))

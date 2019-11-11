@@ -9,7 +9,8 @@ class HashMap {
   get(key) {
     const index = this._findSlot(key);
     if (this._hashTable[index] === undefined) {
-      throw new Error('Key error');
+      // throw new Error('Key error');
+      return null;
     }
     return this._hashTable[index].value;
   }
@@ -29,7 +30,7 @@ class HashMap {
       key,
       value,
       DELETED: false
-    }; 
+    } 
   }
 
   delete(key) {
