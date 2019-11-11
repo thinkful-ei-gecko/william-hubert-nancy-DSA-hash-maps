@@ -76,17 +76,33 @@ function palindrome(string){// input: acecarr, output: true;
 // the output should be: [['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']].
 function anagram(arr) {
   let result = []
-  
-  // for(let i = 0; i < arr.length; i++) {
-  //   let word = arr[i] 
-  //   let nextWord = arr[i++]
-  //   console.log(word, nextWord)
-  //   for(let j = 0; j < word.length; j++) { //east
-  //     if(nextWord.includes(word[j])) {
-  //       result.push(word)
-  //     }
-  //   }
-  // }
+  let idx = 0;
+  let hashMap = new Map();
+
+  for(let word in arr) {
+    const sortedWord = arr[word].split('').sort().join('');
+
+    if(!hashMap.has(sortedWord)) {
+      hashMap.set(sortedWord, idx)
+      result.push([arr[word]])
+      idx++
+    } else {
+      const index = hashMap.get(sortedWord);
+      result[index].push(arr[word])
+    }
+  }
   return result
 }
 console.log(anagram(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']))
+
+function anagram2(arr) {
+  const groups = new HashMap()
+  arr.forEach(word => {
+    const sorted = word.split('').sort().join('')
+    const group = groups.get(sorted) || [] 
+    groups.set(sorted, [...group, word])
+  })
+  return groups._hashTable
+}
+
+console.log(anagram2(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
